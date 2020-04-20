@@ -14,7 +14,13 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ngx-theme-provider": [
+        "dist/ngx-theme-provider/ngx-theme-provider",
+        "dist/ngx-theme-provider"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
