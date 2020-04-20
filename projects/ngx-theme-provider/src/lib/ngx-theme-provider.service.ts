@@ -12,7 +12,7 @@ export class NgxThemeProviderService {
   private _currentTheme: Theme;
 
   constructor(
-    @Inject(THEME_PROVIDER_OPTIONS) private options: ThemeProviderOptions
+    @Inject(THEME_PROVIDER_OPTIONS) private options: ThemeProviderOptions,
   ) {
     this.resetToTheme();
   }

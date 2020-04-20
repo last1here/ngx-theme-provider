@@ -5,11 +5,14 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
+    "test": "ng test ngx-theme-provider",
+    "lint": "ng lint ngx-theme-provider",
     "e2e": "ng e2e",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "build:prod": "npm-run-all build:lib:prod build:lib:cp",
+    "build:lib:prod": "ng build ngx-theme-provider --prod",
+    "build:lib:cp": "node ./scripts/copy-files.js"
   },
   "private": true,
   "dependencies": {
@@ -50,6 +53,8 @@
     "karma-jasmine": "~3.0.1",
     "karma-jasmine-html-reporter": "^1.4.2",
     "ng-packagr": "^9.0.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.0.4",
     "protractor": "~5.4.3",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
