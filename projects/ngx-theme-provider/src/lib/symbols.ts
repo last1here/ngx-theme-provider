@@ -12,12 +12,12 @@ export class ThemeProviderOptions {
   disableBody?: boolean;
 }
 
-export class Theme {
+export class Theme<Props = { [key: string]: string }> {
   name: string;
 
-  properties: { [key: string]: string };
+  properties: Props;
 }
 
 export const THEME_PROVIDER_OPTIONS = new InjectionToken(
-  'THEME_PROVIDER_OPTION'
+  'THEME_PROVIDER_OPTION',
 );
