@@ -15,14 +15,14 @@ export class ThemeProviderComponent {
     this._theme = this.themeProviderService.get(themeOrName);
 
     if (!this._theme) {
-      this.styles = this.sanitizer.bypassSecurityTrustStyle('') as string;
+      this.style = this.sanitizer.bypassSecurityTrustStyle('') as string;
     } else {
       this.updateStyles();
     }
   }
 
   @HostBinding()
-  styles: string;
+  style: string;
 
   constructor(
     private themeProviderService: NgxThemeProviderService,
@@ -30,9 +30,9 @@ export class ThemeProviderComponent {
   ) {}
 
   private updateStyles() {
-    this.styles = <string>(
+    this.style = <string>(
       this.sanitizer.bypassSecurityTrustStyle(
-        this.themeProviderService.buildCss(this._theme)
+        this.themeProviderService.buildCss(this._theme),
       )
     );
   }
