@@ -1,5 +1,9 @@
 import { InjectionToken } from '@angular/core';
 
+export type ThemeFactory = (theme: Theme) => Theme;
+
+export type PropertyFactory = (property: string, prefix?: string) => string;
+
 export class ThemeProviderOptions {
   themes: Theme[];
 
@@ -7,9 +11,15 @@ export class ThemeProviderOptions {
 
   prefix?: string;
 
-  clean?: boolean;
+  cleanBody?: boolean;
 
-  disableBody?: boolean;
+  disableGlobal?: boolean;
+
+  useStyleTag?: boolean;
+
+  factory?: ThemeFactory;
+
+  propertyTransform?: PropertyFactory;
 }
 
 export class Theme<Props = { [key: string]: string }> {

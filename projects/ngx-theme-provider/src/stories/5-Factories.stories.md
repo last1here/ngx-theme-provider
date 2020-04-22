@@ -47,13 +47,13 @@ The aim
 function exampleFactory(theme: Theme<AppProps>) {
   return {
     name: theme.name,
-    properties:{
-      primary-text: isDark(theme.properties.primary) ? '#FFF' : '#111',
-      primary-light: lighten(theme.properties.primary, 10%),
-      primary-transparent: transparentise(theme.properties.primary, 0.5),
-      secondary-text: isDark(theme.properties.secondary) ? '#FFF' : '#111',
-      destructive-text: isDark(theme.properties.destructive) ? '#FFF' : '#111',
-      base-text: isDark(theme.properties.base) ? '#FFF' : '#111',
+    properties: {
+      primaryText: isDark(theme.properties.primary) ? '#FFF' : '#111',
+      primaryLight: lighten(theme.properties.primary, 10%),
+      primaryTransparent: transparentise(theme.properties.primary, 0.5),
+      secondaryText: isDark(theme.properties.secondary) ? '#FFF' : '#111',
+      destructiveText: isDark(theme.properties.destructive) ? '#FFF' : '#111',
+      baseText: isDark(theme.properties.base) ? '#FFF' : '#111',
       ...theme.properties
     }
   } as Theme;
@@ -74,7 +74,9 @@ NgxThemeProviderModule.forRoot({
 
 ## Multiple Factories
 
-There maybe a case for using multiple factories. This is out of scope for the initial implementation. BUT, this can be implemented fairly simply using lodashes [flowRight](https://www.npmjs.com/package/lodash.flowright).
+There maybe a case for using multiple factories. This is out of scope for the
+initial implementation. BUT, this can be implemented fairly simply using
+lodashes [flowRight](https://www.npmjs.com/package/lodash.flowright).
 
 ```typescript
 NgxThemeProviderModule.forRoot({
@@ -83,6 +85,10 @@ NgxThemeProviderModule.forRoot({
   defaultTheme: 'light',
 });
 ```
+
+### Theme params
+
+You can also expand the theme type to provide params
 
 ### Caveat
 

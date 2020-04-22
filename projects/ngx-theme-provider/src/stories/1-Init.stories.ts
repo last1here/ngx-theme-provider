@@ -27,3 +27,28 @@ export const Simple = () => {
     `,
   };
 };
+
+export const UseStyleTag = () => {
+  return {
+    moduleMetadata: {
+      imports: [
+        NgxThemeProviderModule.forRoot({
+          themes: [
+            {
+              name: 'default',
+              properties: {
+                key: '#333',
+              },
+            },
+          ],
+          defaultTheme: 'default',
+          useStyleTag: true,
+        }),
+      ],
+      declarations: [],
+    },
+    template: `
+      Hi, check head for a style element with the id #ngxthemeprovider__tag.
+    `,
+  };
+};

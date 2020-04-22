@@ -1,17 +1,19 @@
 import { Component, HostBinding, Input } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NgxThemeProviderService } from '../../ngx-theme-provider.service';
+import { Theme } from '../../symbols';
 
 @Component({
   selector: 'theme-provider',
   template: `<ng-content></ng-content>`,
 })
 export class ThemeProviderComponent {
-  private _theme: string;
+  private _theme: Theme;
 
   @Input()
-  set theme(name: string) {
-    this._theme = name;
+  set theme(themeOrName: Theme | string) {
+    this._theme = this.themeProviderService.get(themeOrName);
+
     if (!this._theme) {
       this.styles = this.sanitizer.bypassSecurityTrustStyle('') as string;
     } else {
@@ -19,22 +21,18 @@ export class ThemeProviderComponent {
     }
   }
 
-  get theme() {
-    return this._theme;
-  }
-
-  @HostBinding('style')
+  @HostBinding()
   styles: string;
 
   constructor(
     private themeProviderService: NgxThemeProviderService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
   ) {}
 
   private updateStyles() {
     this.styles = <string>(
       this.sanitizer.bypassSecurityTrustStyle(
-        this.themeProviderService.buildCssString(this.theme)
+        this.themeProviderService.buildCss(this._theme)
       )
     );
   }

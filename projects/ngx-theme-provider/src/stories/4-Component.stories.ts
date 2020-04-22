@@ -49,9 +49,59 @@ export const Simple = () => {
     },
     template: `
       <themed-item>
-        test<br/><br/>
+        Test outer<br/><br/>
         <theme-provider theme="dark">
           <themed-item>Test inner</themed-item>
+        </theme-provider>
+      </themed-item>
+    `,
+  };
+};
+
+export const Nested = () => {
+  return {
+    moduleMetadata: {
+      imports: [
+        NgxThemeProviderModule.forRoot({
+          themes: [
+            {
+              name: 'default',
+              properties: {
+                color: '#333',
+                background: '#EEE',
+              },
+            },
+            {
+              name: 'dark',
+              properties: {
+                color: 'pink',
+                background: 'black',
+              },
+            },
+            {
+              name: 'other',
+              properties: {
+                color: 'red',
+                colorTest: 'red',
+                background: 'blue',
+              },
+            },
+          ],
+          defaultTheme: 'default',
+        }),
+      ],
+      declarations: [ThemedComponent],
+    },
+    template: `
+      <themed-item>
+        Test outer<br/><br/>
+        <theme-provider theme="dark">
+          <themed-item>
+            Test inner<br/><br/>
+            <theme-provider theme="other">
+              <themed-item>Test inner inner</themed-item>
+            </theme-provider>
+          </themed-item>
         </theme-provider>
       </themed-item>
     `,
